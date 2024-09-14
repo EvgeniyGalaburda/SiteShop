@@ -1,0 +1,21 @@
+.star {
+    position: relative;
+    display: inline-block;
+    font-size: 24px;
+    color: lightgray; /* Незаповнені зірки */
+}
+
+.starFilled {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    color: rgb(179, 212, 113); /* Заповнені зірки */
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0%; /* Початкова ширина, що заповнюється відповідно до rate */
+}
+
+.starRating {
+    display: inline-block;
+}
