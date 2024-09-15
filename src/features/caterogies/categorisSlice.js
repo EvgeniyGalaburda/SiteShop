@@ -17,6 +17,12 @@ const categoriesSlice = createSlice({
     name: 'categories',
     initialState: {
         list:[],
+        showForm: false,
+    },
+    reducers:{
+        toggleCat: (state, {payload}) => {
+            state.showForm = payload;
+        }
     },
     extraReducers: (builder) =>{
         builder.addCase(getCategories.pending, (state) => {
@@ -31,5 +37,7 @@ const categoriesSlice = createSlice({
           });
     }
 });
+
+export const {toggleCat} = categoriesSlice.actions;
 
 export default categoriesSlice.reducer;

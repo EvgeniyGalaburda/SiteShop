@@ -38,7 +38,7 @@ export default function Cart() {
     <a href="https://ih1.redbubble.net/image.4532039623.0625/st,small,507x507-pad,600x600,f8f8f8.u2.jpg" target='_blank'>
         <Button>Buy</Button>
     </a>
-    <h3>{price}$</h3>
+    <h3>{price.toFixed(2)}$</h3>
     </div>
     </div>
   )

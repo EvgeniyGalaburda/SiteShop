@@ -1,13 +1,20 @@
 import React, { useEffect } from 'react'
 import {Link} from 'react-router-dom'
-import { FaRegUserCircle, FaSearch, FaHeart, FaCartPlus} from "react-icons/fa";
+import { FaRegUserCircle, FaSearch, FaHeart, FaCartPlus, } from "react-icons/fa";
+import { IoMdMenu } from "react-icons/io";
 
 import styles from '../styles/Header.module.css'
 import {ROUTES} from '../utils/routes.js';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleForm } from '../features/user/userSlice.js';
+import {toggleCat} from '../features/caterogies/categorisSlice.js'
 
 export default function Header() {
+
+    const showingForm = (bool) => {
+      dispatch(toggleCat(bool));
+    }
+
     const dispatch = useDispatch();
     const {currentUser, cart} = useSelector(({user}) => user);
 
@@ -21,6 +28,7 @@ export default function Header() {
 
   return (
     <header className={styles.header}>
+        <IoMdMenu onClick={() => showingForm(true)} className={styles.menu}/>
         <div className={styles.logo}>
             <Link to={ROUTES.HOME}>
                 <h1>Shop.</h1>
