@@ -12,7 +12,7 @@ export default function Banner() {
     <section className={style.banner}>
         <div className={style.left}>
             <p className={style.content}>
-                NEW YEAR
+                NEW YEAR 
                 <span>SALE</span>
             </p>
             <Button color={'rgb(230, 87, 140)'}>See more</Button>

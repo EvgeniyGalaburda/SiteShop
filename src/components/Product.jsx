@@ -7,7 +7,7 @@ import style from '../styles/Product.module.css'
 import Button from './Button'
 import { ROUTES } from '../utils/routes'
 import StarRating from './StarRating'
-import { addItemToCart, addItemToFavourite } from '../features/user/userSlice';
+import { addItemToCart, addItemToFavourite, toggleForm } from '../features/user/userSlice';
 
 const Product = (item) => {
   const dispatch = useDispatch();
@@ -19,7 +19,9 @@ const Product = (item) => {
 
     const addToCart = () => {
       if(currentUser)
-      dispatch(addItemToCart(item));
+        dispatch(addItemToCart(item));
+      else
+        dispatch(toggleForm(true));
     }
 
     const addToFavourite = () => {

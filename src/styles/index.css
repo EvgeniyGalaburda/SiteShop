@@ -29,7 +29,6 @@ a{
 .container{
     display: grid;
     grid-template-columns: 1fr 3fr; /* Перший рядок: дві колонки, 1 частина і 3 частини */
-    grid-auto-rows: auto;
     gap: 20px;
 }
 

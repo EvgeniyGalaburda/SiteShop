@@ -1,10 +1,11 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
+import { CiTrash } from "react-icons/ci";
 
 import style from '../styles/Cart.module.css'
 import Button from './Button'
-import {changeQuantity} from '../features/user/userSlice'
+import {changeQuantity, deleteItemFromCart} from '../features/user/userSlice'
 
 
 export default function Cart() {
@@ -16,6 +17,10 @@ export default function Cart() {
         dispatch(changeQuantity({id, op}))
     }
 
+    const deleteItem = (id) => {
+        dispatch(deleteItemFromCart(id));
+    }
+
   return (
     <div className={style.cart}>
     <div className={style.carttitle}>Cart</div>
@@ -24,13 +29,16 @@ export default function Cart() {
             price += item.price * item.quantity;
             return(
             <li className={style.item} key={i}>
-                <div className={style.count}>
-                    <span onClick={() => change(item.id, -1)}>-</span>
-                    <span>{item.quantity}</span>
-                    <span onClick={() => change(item.id, 1)}>+</span>
+                <div className={style.top}>
+                    <div className={style.count}>
+                        <span onClick={() => change(item.id, -1)}>-</span>
+                        <span>{item.quantity}</span>
+                        <span onClick={() => change(item.id, 1)}>+</span>
+                    </div>
+                    <CiTrash onClick={() => deleteItem(item.id)} className={style.trash}/>
                 </div>
-                <Link to={`/products/${item.id}`} className={style.image} style={{backgroundImage: `url(${item.image})`}}/>
-                <h3 className={style.title} onClick={() => change(item.id)}>{item.title}</h3>
+                <Link to={`/products/${item.id}`} className={style.image} draggable style={{backgroundImage: `url(${item.image})`}}/>
+                <h3 className={style.title}>{item.title}</h3>
             </li>)
 })}
     </div>
@@ -39,6 +47,7 @@ export default function Cart() {
         <Button>Buy</Button>
     </a>
     <h3>{price.toFixed(2)}$</h3>
+
     </div>
     </div>
   )
