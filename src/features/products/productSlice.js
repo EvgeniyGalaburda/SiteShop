@@ -20,9 +20,17 @@ const productSlice = createSlice({
         list:[],
         filtered: [],
         related: [],
+        search: [],
         isLoading: false,
     },
     reducers:{
+        searchProduct: (state, {payload}) => {
+            if(payload)
+            state.search = state.list.filter(({title}) =>  title.toLowerCase().includes(payload.toLowerCase()));
+            else 
+            state.search = [];
+        },
+
         filterByPrice:(state, {payload}) =>{
             state.filtered = state.list.filter(({price}) => price < payload)
         },
@@ -47,6 +55,6 @@ const productSlice = createSlice({
     }
 });
 
-export const {filterByPrice, getRelatedProducts} = productSlice.actions;
+export const {filterByPrice, getRelatedProducts, searchProduct} = productSlice.actions;
 
 export default productSlice.reducer;

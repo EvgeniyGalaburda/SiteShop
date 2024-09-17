@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import style from '../styles/Products.module.css'
 import { Link } from 'react-router-dom'
 import { suffle } from '../utils/common';
+import { useDispatch } from 'react-redux';
+
+
 
 export default function Products({title, products = [], amount}) {
+  
     const list = suffle(products).slice(0, amount);
 
 

@@ -36,6 +36,7 @@
 
 .form {
     width: 30%;
+    position: relative;
 }
 .input{
     display: flex;
@@ -59,6 +60,37 @@
 
 .input input::placeholder{
     color:rgb(62, 62, 62)
+}
+
+.box{
+    position: absolute;
+    backdrop-filter: blur(20px);
+    background-color: rgba(255, 255, 255, 0.6);
+    margin-top: 5px;
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: calc(100% - 32px);
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.337);
+    z-index: 100;
+    max-height: 300px;
+    overflow: scroll;
+
+}
+
+.box a{
+    padding-bottom: 15px;
+    border-bottom: 1px solid #0000003c;
+    font-size: 17px;
+    font-weight: 400;
+    color: rgb(28, 28, 28);
+    transition: .2s;
+}
+
+.box a:hover{
+    color: rgb(31, 79, 124);
 }
 
 .account{
@@ -112,6 +144,9 @@
         top: 0;
         height: 40px;
     }
+    .box a{
+        font-size: 10px;
+    }
     .menu{
         display: flex;
         height: 100%;
@@ -135,16 +170,15 @@
 }
 
 @media (max-width: 460px){
-    .input:focus-within{
+    .form:focus-within{
+        width: 34%;
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
         left: 20%;
         font-size: 12px;
     }
-    .form{
-        width: 34%;
-    }
+
     .input{
 
         padding-right: 0;

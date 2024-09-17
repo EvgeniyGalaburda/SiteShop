@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState} from 'react'
 import {Link} from 'react-router-dom'
 import { FaRegUserCircle, FaSearch, FaHeart, FaCartPlus, } from "react-icons/fa";
 import { IoMdMenu } from "react-icons/io";
@@ -8,21 +8,31 @@ import {ROUTES} from '../utils/routes.js';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleForm } from '../features/user/userSlice.js';
 import {toggleCat} from '../features/caterogies/categorisSlice.js'
+import {searchProduct} from '../features/products/productSlice.js';
 
 export default function Header() {
-
+    const {search} = useSelector(({products}) => products);
+    const [focus, setFocus] = useState(false)
+    const [searchValue, setSearchValue] = useState('');
+    const dispatch = useDispatch();
+    const {currentUser, cart} = useSelector(({user}) => user);
+    
     const showingForm = (bool) => {
       dispatch(toggleCat(bool));
     }
 
-    const dispatch = useDispatch();
-    const {currentUser, cart} = useSelector(({user}) => user);
 
     const handleClick = () => {
       
             dispatch(toggleForm(true))
 
     }
+
+    const handleSearch = ({target: {value}}) =>{
+      setSearchValue(value);
+      dispatch(searchProduct(value));
+    }
+
 
     
 
@@ -41,13 +51,17 @@ export default function Header() {
             <div className={styles.username}>{currentUser?currentUser.username:"Guest"}</div>
             </div>
 
-            <form className={styles.form}>
+            <form onFocus={() => {setFocus(true)}} onBlur={() => {setFocus(false)}} className={styles.form}>
             <div className={styles.input}>
                  <FaSearch />
-                <input type="search" name='search' placeholder='Search for anything..' autoComplete='off' onChange={() =>{}} value='' />
+                <input   type="search" name='search' placeholder='Search for anything..' autoComplete='off' onChange={handleSearch} value={searchValue} />
             </div>
 
-            {false && <div className={styles.box}></div>}
+           {search.length> 0 & focus ? <div className={styles.box}>
+              {search.map((item) => (
+                <Link to={`/products/${item.id}`} className={styles.sInput} key={item.id}>{item.title}</Link>
+              ))}
+              </div>:''}
             </form>
 
             <div className={styles.account}>

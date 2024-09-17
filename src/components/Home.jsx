@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import style from '../styles/Home.module.css'
 import Categories from './Categories'
 import Banner from './Banner'
-import {filterByPrice} from '../features/products/productSlice';
+import {filterByPrice, getProducts} from '../features/products/productSlice';
 
 export default function Home() {
   const dispatch = useDispatch();
