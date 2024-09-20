@@ -84,7 +84,7 @@
     font-size: 20px;
 }
 
-@media (max-width: 460px){
+@media (max-width: 1024px){
     .signup{
         grid-template-columns: 1fr 1fr;
     }

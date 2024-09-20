@@ -26,7 +26,9 @@ const productSlice = createSlice({
     reducers:{
         searchProduct: (state, {payload}) => {
             if(payload)
-            state.search = state.list.filter(({title}) =>  title.toLowerCase().includes(payload.toLowerCase()));
+            state.search = state.list.filter(({title, category}) =>  
+            title.toLowerCase().includes(payload.toLowerCase()) ||
+            category.toLowerCase().includes(payload.toLowerCase()));
             else 
             state.search = [];
         },

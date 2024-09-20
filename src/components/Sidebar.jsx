@@ -25,7 +25,7 @@ export default function Sidebar() {
           {isLoading?<Skeleton className={style.skeleton} count={5} />:
           list.map((cat, id) => (
             <li key={id}>
-              <NavLink className={({isActive}) => `${style.cat} ${isActive ? style.active:''}`} to={`/categories/${id+1}`}>{cat}</NavLink>
+              <NavLink className={({isActive}) => `${style.cat} ${isActive ? style.active:''}`} to={`/categories/${cat}`}>{cat}</NavLink>
           </li>
           ))}
           

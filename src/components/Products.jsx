@@ -8,8 +8,7 @@ import { useDispatch } from 'react-redux';
 
 
 export default function Products({title, products = [], amount}) {
-  
-    const list = suffle(products).slice(0, amount);
+    const list = [...products].sort((a,b) => b.rating.rate - a.rating.rate).slice(0, amount);
 
 
   return (

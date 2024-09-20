@@ -18,9 +18,11 @@
 .list{
     display: grid;
     grid-template-columns: repeat(auto-fit, 217px);
+    grid-auto-rows: auto;
     gap: 10px;
     height: 280px;
     overflow: scroll;
+    align-items: center;
     justify-content: center;
 }
 .item{

@@ -14,7 +14,7 @@ export default function Categories({title, products = [], amount}) {
         <h2 className={style.h2}>{title}</h2>
         <div className={style.list}>
             {list.map((item, id) => (
-                <Link key={id+1} to={`/categories/${id+1}`} className={style.item}>
+                <Link key={id} to={`/categories/${item}`} className={style.item}>
                     <div className={style.image}><img src={images[id].image} alt={item}  /></div>
                     <h3 className={style.title}>{item}</h3>
                 </Link>

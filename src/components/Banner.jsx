@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { NavLink } from 'react-router-dom'
 
 import style from '../styles/Home.module.css'
 import Button from './Button'
@@ -15,7 +16,9 @@ export default function Banner() {
                 NEW YEAR 
                 <span>SALE</span>
             </p>
-            <Button color={'rgb(230, 87, 140)'}>See more</Button>
+            <NavLink to={'/products'}>
+                <Button color={'rgb(230, 87, 140)'}>See more</Button>
+            </NavLink>
         </div>
         <div className={style.right} style={{backgroundImage:`url(${SALE})`}}>
             <p className={style.discount}>

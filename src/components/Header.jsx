@@ -1,5 +1,5 @@
-import React, { useState} from 'react'
-import {Link} from 'react-router-dom'
+import React, { useEffect, useState} from 'react'
+import {Link, useLocation} from 'react-router-dom'
 import { FaRegUserCircle, FaSearch, FaHeart, FaCartPlus, } from "react-icons/fa";
 import { IoMdMenu } from "react-icons/io";
 
@@ -12,10 +12,10 @@ import {searchProduct} from '../features/products/productSlice.js';
 
 export default function Header() {
     const {search} = useSelector(({products}) => products);
-    const [focus, setFocus] = useState(false)
     const [searchValue, setSearchValue] = useState('');
     const dispatch = useDispatch();
     const {currentUser, cart} = useSelector(({user}) => user);
+    const {pathname} = useLocation();
     
     const showingForm = (bool) => {
       dispatch(toggleCat(bool));
@@ -32,6 +32,10 @@ export default function Header() {
       setSearchValue(value);
       dispatch(searchProduct(value));
     }
+
+    useEffect(() => {
+       dispatch(searchProduct(null));
+    }, [pathname])
 
 
     
@@ -51,15 +55,15 @@ export default function Header() {
             <div className={styles.username}>{currentUser?currentUser.username:"Guest"}</div>
             </div>
 
-            <form onFocus={() => {setFocus(true)}} onBlur={() => {setFocus(false)}} className={styles.form}>
+            <form className={styles.form}>
             <div className={styles.input}>
                  <FaSearch />
                 <input   type="search" name='search' placeholder='Search for anything..' autoComplete='off' onChange={handleSearch} value={searchValue} />
             </div>
 
-           {search.length> 0 & focus ? <div className={styles.box}>
+           {search.length> 0 ? <div className={styles.box}>
               {search.map((item) => (
-                <Link to={`/products/${item.id}`} className={styles.sInput} key={item.id}>{item.title}</Link>
+                <Link  to={`/products/${item.id}`} className={styles.sInput} key={item.id}>{item.title}</Link>
               ))}
               </div>:''}
             </form>
